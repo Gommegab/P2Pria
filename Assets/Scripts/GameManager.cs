@@ -70,12 +70,13 @@ public class GameManager : MonoBehaviour
                 text[5].text = camara.lon.ToString();
                 text[6].text = camara.nomeCamara;
                 text[7].text = camara.provincia;
-                cargado = true;
+               
             }
             else
             {
                 Debug.Log("No se puede conectar con la api");
             }
+             cargado = true;
         }
             }
 }
