@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     #region variables_privadas
     private Camaras camaras;
     private bool cargado = false;
+    private float timeCharge=0f;
     #endregion
 
     void Awake()
@@ -21,6 +22,16 @@ public class GameManager : MonoBehaviour
     }
      void Update()
     {
+        timeCharge += Time.deltaTime;
+
+        if (timeCharge >= 60f)
+        {
+            Debug.Log("recargar-imagen");
+            cargado = false;
+            timeCharge = 0f;
+            StartCoroutine(DownloadImage(camara.imaxeCamara));
+
+        }
         if (Input.GetKeyDown(KeyCode.Space)&&cargado==true)
         {
             cargado = false;
@@ -76,7 +87,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("No se puede conectar con la api");
             }
-             cargado = true;
+            cargado = true;
         }
             }
 }
